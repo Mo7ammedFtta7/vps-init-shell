@@ -65,13 +65,14 @@ if [ ! -d "$absolute_doc_root" ]; then
     `mkdir "$absolute_doc_root/public"`
 
 	`chown -R $SUDO_USER:$SUDO_USER "$absolute_doc_root/"`
+	`chown -R $SUDO_USER:$SUDO_USER "$absolute_doc_root/public"`
 
 	# create index file
-	indexfile="$absolute_doc_root/index.html"
+	indexfile="$absolute_doc_root/public/index.php"
 	`touch "$indexfile"`
-	echo "<html><head></head><body>Welcome!</body></html>" >> "$indexfile"
+	echo "<?php phpinfo();?>" >> "$indexfile"
 
-	echo "Created directory $absolute_doc_root/"
+	echo "Created directory $absolute_doc_root/public"
 fi
 
 # update vhost
@@ -102,4 +103,4 @@ echo "Process complete, check out the new site at http://$site_url"
 
 exit 0
 
-# chmod u+x addWesite.sh
+# chmod u+x /path/to/script/addvhost.sh
